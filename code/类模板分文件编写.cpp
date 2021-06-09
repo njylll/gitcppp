@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-#include "person.cpp"
+//将.h和.cpp写在一起，将后缀名改为.hpp
+#include "person.hpp"
 using namespace std;
 
 //类模板分文件问题以及解决

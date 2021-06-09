@@ -106,7 +106,7 @@ void test01()
 {
     MyArray<int> arr1(5);
     arr1.Push_Back(1);
-    cout << "arr1[1] = " << arr1[1] << endl;
+    cout << "arr1[1] = " << arr1[0] << endl;
    // MyArray<int> arr2(arr1);
     //MyArray<int> arr3(100);
     //arr3 = arr1;

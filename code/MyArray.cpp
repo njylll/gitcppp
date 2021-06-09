@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 template<class T>
@@ -82,7 +83,7 @@ public:
         return this->m_Capacity;
     }
 
-    int size()
+    int grtSize()
     {
         return this->m_Size;
     }
@@ -101,12 +102,77 @@ private:
     int m_Capacity;
     int m_Size;
 };
+class Person
+{
+public:
+    Person(){};
+    Person(string name, int age)
+    {
+        this->m_Name = name;
+        this->m_Age = age;
+    }
+
+    string m_Name;
+    int m_Age;
+
+};
+
+void printIntArray(MyArray<int>& arr)
+{
+    for(int i = 0; i < arr.grtSize(); i++)
+    {
+        cout << arr[i] << endl;
+    }
+}
+
+void printPersonArray(MyArray<Person>& arr)
+{
+    for(int i = 0; i < arr.grtSize(); i++)
+    {
+        cout << "姓名：" << arr[i].m_Name << endl;
+        cout << "年龄：" << arr[i].m_Age << endl;
+    }
+}
+
+//自定义数据类型的测试
+
+
+void test02()
+{
+    MyArray<Person> arr(10);
+    Person p1("孙悟空", 99);
+    Person p2("妲己", 59);
+    Person p3("阿离", 69);
+    Person p4("韩信", 79);
+    Person p5("孙尚香", 89);
+
+    arr.Push_Back(p1);
+    arr.Push_Back(p2);
+    arr.Push_Back(p3);
+    arr.Push_Back(p4);
+    arr.Push_Back(p5);
+    printPersonArray(arr);
+    cout << "arr容量为：" << arr.getCapacity();
+    cout << "arr大小为：" << arr.grtSize();
+
+}
 
 void test01()
 {
     MyArray<int> arr1(5);
-    arr1.Push_Back(1);
-    cout << "arr1[1] = " << arr1[0] << endl;
+   for(int i = 0;i < 5; i++)
+   {
+       arr1.Push_Back(i);
+   }
+
+    cout << "arr1的容量为：" << arr1.getCapacity() << endl;
+    cout << "arr1的大小为：" << arr1.grtSize() << endl;
+    cout << "arr1的打印输出为：" << endl;
+    printIntArray(arr1);
+    MyArray<int> arr2(arr1);
+    arr2.Pop_Back();
+    printIntArray(arr2);
+    cout << arr2[4] << endl;
    // MyArray<int> arr2(arr1);
     //MyArray<int> arr3(100);
     //arr3 = arr1;
@@ -114,6 +180,7 @@ void test01()
 
 int main()
 {
-    test01();
+    //test01();
+    test02();
     return 0;
 }

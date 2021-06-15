@@ -27,7 +27,7 @@ printDeq(d2);
 deque<int> d3(d2);
 printDeq(d3);
 
-deque<int> d4(d1.begin(),d1.begin()+3);
+deque<int> d4(d1.begin(),d1.begin()+3);//0 1 2 
 
 printDeq(d4);
 

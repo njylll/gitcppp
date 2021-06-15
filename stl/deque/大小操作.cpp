@@ -27,7 +27,6 @@ void test()
         cout << "d1不为空" << endl;
         cout << "d1的大小为" << d1.size() << endl;
     }
-
     d1.resize(15,1);
     printDeque(d1);
 

@@ -2,10 +2,10 @@
 #include <deque>
 using namespace std;
 
- void printDeq( deque<int> deq)
+ void printDeq(const deque<int> &deq)
 {
-    for(deque<int>::iterator it = deq.begin();it != deq.end(); it++)
-    {
+    for(deque<int>::const_iterator it = deq.begin();it != deq.end(); it++)//const_iteratot只读迭代器
+    { 
         cout << *(it) << " ";
     }
     cout << endl;
@@ -24,10 +24,12 @@ for(int i = 0;i < 10;i++)
 deque<int> d2(4,100);
 printDeq(d2);
 
-
-deque<int> d3(d1.begin(),d1.begin()+3); 
-
+deque<int> d3(d2);
 printDeq(d3);
+
+deque<int> d4(d1.begin(),d1.begin()+3);
+
+printDeq(d4);
 
 }
 

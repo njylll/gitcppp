@@ -74,7 +74,7 @@ void showScore(const vector<Person> &p)
     }
 }
 
-void test()
+int main()
 {
     srand((unsigned int)time(NULL));
     vector<Person> v;//存放选手的容器
@@ -85,15 +85,7 @@ void test()
     // }
     setScore(v);
     showScore(v);
+    return 0;
 }
 
-
-int main()
-
-{
-
-test();
-return 0;
-
-}
 

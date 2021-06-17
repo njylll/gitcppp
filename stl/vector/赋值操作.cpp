@@ -35,7 +35,13 @@ void test()
     vector<int> v4;
     v4.assign(10,100);
     printVector(v4);
-
+    
+    //{}
+    vector<int>v5{1,2,3,4,5,6,7};
+    for(auto i : v5)
+    {
+        cout << i << " ";
+    }
 }
 
 int main()

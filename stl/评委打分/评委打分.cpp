@@ -3,6 +3,7 @@
 #include <deque>
 #include <algorithm>
 #include <ctime>
+#include <numeric>
 using namespace std;
 
 /*
@@ -56,10 +57,7 @@ void setScore(vector<Person> &v)
 
             //取平均分
             float sum = 0;
-            for(deque<int>::iterator dit = d.begin(); dit != d.end(); dit++)
-            {
-                sum += (*dit);
-            }
+            sum = accumulate(d.begin(),d.end(), 0);
            // cout << "d.size() = " << d.size() << endl;
             float avg = sum/d.size();
             it->m_Score = avg;

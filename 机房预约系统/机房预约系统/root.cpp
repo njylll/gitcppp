@@ -154,7 +154,7 @@ bool Root::checkRepeat(int id, int type)
 	{
 		for (vector<Teacher>::iterator it = vTea.begin(); it != vTea.end(); it++)
 		{
-			if (it->m_EmpId = id)
+			if (it->m_EmpId == id)
 			{
 				return true;
 			}

@@ -25,6 +25,8 @@ public:
 	void initVector();
 	//去重函数
 	bool checkRepeat(int id, int type);
+	//加入容器
+	void addToVector(int id, string name,string passwd,int type);//参数为选择加入哪个容器
 
 	vector<Student>vStu;
 	vector<Teacher>vTea;

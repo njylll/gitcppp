@@ -82,10 +82,11 @@ void Root::addPerson()
 	cout << "请输入密码：" << endl;
 	cin >> passwd;
 
-
+	addToVector(id,name,passwd,select);
 	ofs.open(fileName, ios::out | ios::app);
 	ofs << id << " " << name << " " << passwd << " " << endl;
 	cout << "添加成功" << endl;
+	cout << "学生人数为：" << vStu.size() << endl;
 	system("pause");
 	system("cls");
 }
@@ -161,4 +162,27 @@ bool Root::checkRepeat(int id, int type)
 		}
 	}
 	return false;
+}
+
+//加入容器
+
+void addToVector(int id, string name, string passwd, int type)
+{
+	//添加学生
+	if(type == 1)
+	{
+		Student stu;
+		stu.m_Name = name;
+		stu.m_Id = id;
+		stu.m_Passwd = passwd;
+		vStu.push_back(stu);
+	}
+	else
+	{
+		Teacher tea;
+		tea.m_EmpId = id;
+		tea.m_Name = name;
+		tea.m_Passwd = passwd;
+		vTea.push_back(tea);
+	}
 }

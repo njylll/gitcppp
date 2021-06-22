@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace std;
 #include "identity.h"
+#include"orderfile.h"
 
 //教师类
 class Teacher : public Identity
@@ -18,4 +19,5 @@ public:
 	void validOrder();
 	//职工号
 	int m_EmpId;
+	OrderFile orderFile;
 };

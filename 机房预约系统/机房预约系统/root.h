@@ -5,6 +5,7 @@ using namespace std;
 #include "global.h"
 #include "student.h"
 #include "teacher.h"
+#include "computerRoom.h"
 #include <vector>
 
 class Root : public Identity
@@ -30,4 +31,5 @@ public:
 
 	vector<Student>vStu;
 	vector<Teacher>vTea;
+	vector<ComputerRoom>vComRoom;
 };

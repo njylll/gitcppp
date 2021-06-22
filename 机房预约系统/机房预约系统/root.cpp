@@ -27,7 +27,7 @@ void Root::operMenu()
 	cout << "\t\t|        0. 注销登录                 |\n";
 	cout << "\t\t|                                    |\n";
 	cout << "\t\t ------------------------------------\n";
-	cout << "请输入你的选择" << endl;
+	cout << "请输入你的选择：" << endl;
 }
 //添加账号
 void Root::addPerson()
@@ -93,18 +93,62 @@ void Root::addPerson()
 //查看账号
 void Root::showPerson()
 {
-
+	cout << "选择要查看的内容：" << endl;
+	cout << "1. 查看所有学生" << endl;
+	cout << "2. 查看所有老师" << endl;
+	int select;
+	cout << "请输入你的选择：" << endl;
+	while (true)
+	{
+		cin >> select;
+		if(select == 1)
+		{
+			cout << endl << "学生账号为：" << endl;
+			for (auto i : vStu)
+			{
+				cout << "学生学号：" << i.m_Id << "\t" << "姓名：" << i.m_Name << "\t" << "密码：" << i.m_Passwd << endl;
+			}
+			break;
+		}
+		else if(select == 2)
+		{
+			cout << "教师账号为：" << endl;
+			for (auto i : vTea)
+			{
+				cout << "教职工号：" << i.m_EmpId << "\t" << "姓名：" << i.m_Name << "\t" << "密码：" << i.m_Passwd << endl;
+			}
+			break;
+			
+		}
+		else
+		{
+			cout << "输入错误，请重新输入：" << endl;
+		}
+	}
+	system("pause");
+	system("cls");
+	
 }
 //查看机房信息
 void Root::showComputer()
 {
-
+	for (auto i : vComRoom)
+	{
+		cout << "机房号：" << i.m_ComId << "\t" << "最大容量: " << i.m_MaxNum << endl;
+	}
+	system("pause");
+	system("cls");
 }
 //清空预约记录
 void Root::clearFile()
 {
-
+	ofstream ofs;
+	ofs.open(ORDER_FILR, ios::trunc);
+	cout << "清空成功!" << endl;
+	system("pause");
+	system("cls");
 }
+//初始化学生，教师，机房信息
 void Root::initVector()
 {
 	vStu.clear();
@@ -121,7 +165,7 @@ void Root::initVector()
 	{
 		vStu.push_back(s);
 	}
-	cout << "学生数量：" << vStu.size() << endl;
+	//cout << "学生数量：" << vStu.size() << endl;
 	ifs.close();
 	ifs.open(TEACHER_FILE, ios::in);
 	if (!ifs.is_open())
@@ -134,8 +178,21 @@ void Root::initVector()
 	{
 		vTea.push_back(t);
 	}
-	cout << "教师数量: " << vTea.size() << endl;
-
+	//cout << "教师数量: " << vTea.size() << endl;
+	ifs.close();
+	ifs.open(COMPUTER_FILE, ios::in);
+	if (!ifs.is_open())
+	{
+		cout << "打开文件失败" << endl;
+		return;
+	}
+	ComputerRoom computerRoom;
+	while (ifs >> computerRoom.m_ComId >> computerRoom.m_MaxNum)
+	{
+		vComRoom.push_back(computerRoom);
+	}
+	//cout << "机房数为：" << vComRoom.size() << endl;
+	ifs.close();
 }
 
 //去重函数
@@ -166,7 +223,7 @@ bool Root::checkRepeat(int id, int type)
 
 //加入容器
 
-void addToVector(int id, string name, string passwd, int type)
+void Root::addToVector(int id, string name, string passwd, int type)
 {
 	//添加学生
 	if(type == 1)

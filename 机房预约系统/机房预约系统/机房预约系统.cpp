@@ -1,11 +1,12 @@
 #include <iostream>
+using namespace std;
 #include "identity.h"
 #include <fstream>
 #include "student.h"
 #include "global.h"
 #include "teacher.h"
 #include "root.h"
-using namespace std;
+
 
 //进入管理员子菜单界面
 void rootMenu(Identity * &manager)
@@ -19,22 +20,22 @@ void rootMenu(Identity * &manager)
 		cin >> select;
 		if (select == 1)
 		{
-			cout << "添加账号" << endl;
+			cout << "添加账号:" << endl << endl;
 			root->addPerson();
 		}
 		else if (select == 2)
 		{
-			cout << "查看账号" << endl;
+			cout << "查看账号:" << endl << endl;
 			root->showPerson();
 		}
 		else if (select == 3)
 		{
-			cout << "查看机房" << endl;
+			cout << "查看机房" << endl << endl;
 			root->showComputer();
 		}
 		else if (select == 4)
 		{
-			cout << "清空预约" << endl;
+			cout << "清空预约" << endl << endl;
 			root->clearFile();
 		}
 		else
@@ -47,6 +48,75 @@ void rootMenu(Identity * &manager)
 			return;
 		}
 		
+	}
+}
+
+//进入学生子菜单
+void studentMenu(Identity * &student)
+{
+	while (true)
+	{
+		student->operMenu();
+		Student* stu = (Student*)student;
+		int select = 0;
+		cin >> select;
+		switch (select)
+		{
+		case 1:
+			cout << "申请预约：" << endl << endl;
+			stu->applyOrder();
+			break;
+		case 2:
+			cout << "显示我的预约:" << endl << endl;
+			stu->showMyOrder();
+			break;
+		case 3:
+			cout << "显示所有预约：" << endl << endl;
+			stu->showAllOrder();
+			break;
+		case 4:
+			cout << "取消预约：" << endl << endl;
+			stu->cancelOrder();
+			break;
+		default:
+			delete student;
+			student = NULL;
+			cout << "注销成功!" << endl;
+			system("pause");
+			system("cls");
+			return;
+		
+		}
+	}
+}
+
+//进入教师子菜单
+void teacherMenu(Teacher* teacher)
+{
+	while (true)
+	{
+		teacher->operMenu();
+		int select = 0;
+		cin >> select;
+		if (select == 1)
+		{
+			cout << "查看所有预约：" << endl << endl;
+			teacher->showAllOrder();
+		}
+		else if (select == 2)
+		{
+			cout << "审核预约：" << endl << endl;
+			teacher->validOrder();
+		}
+		else
+		{
+			delete teacher;
+			teacher = NULL;
+			cout << "注销成功！" << endl;
+			system("pause");
+			system("cls");
+			return;
+		}
 	}
 }
 
@@ -98,6 +168,8 @@ void loginIn(string filename, int type)
 				system("pause");
 				system("cls");
 				person = new Student(id, name, passwd);
+				studentMenu(person);
+				return;
 			}
 		}
 
@@ -115,7 +187,9 @@ void loginIn(string filename, int type)
 				cout << "教师验证登陆成功！" << endl;
 				system("pause");
 				system("cls");
-				person = new Teacher(id, name, passwd);
+				Teacher *teacher = new Teacher(id, name, passwd);
+				teacherMenu(teacher);
+				return;
 			}
 		}
 	}
